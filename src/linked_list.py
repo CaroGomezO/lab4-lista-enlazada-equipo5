@@ -49,7 +49,19 @@ class LinkedList:
         Args:
             data: El valor a insertar.
         """
-        raise NotImplementedError("Equipo A debe implementar append()")
+        
+        new_node = Node(data)
+        
+        # Caso 1: Lista vacía
+        if self.head is None:
+            self.head = new_node
+            return
+        
+        # Caso 2: Lista no vacía, se recorre hasta el último nodo
+        current = self.head
+        while current.next is not None:
+            current = current.next
+        current.next = new_node
 
     # ------------------------------------------------------------------ #
     # TODO — Equipo B: rama feature/delete                                #

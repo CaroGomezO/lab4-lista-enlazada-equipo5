@@ -96,3 +96,11 @@ def test_append_multiples_elementos():
         ll.append(i)
     assert len(ll) == n
     assert ll.head.data == 0
+
+
+def test_append_datos_duplicados():
+    ll = LinkedList()
+    ll.append(5)
+    ll.append(5)
+    assert len(ll) == 2
+    assert str(ll) == "5 -> 5"

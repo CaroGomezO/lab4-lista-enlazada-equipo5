@@ -3,7 +3,6 @@
 # CADA EQUIPO agregará sus propias pruebas en este archivo
 # desde su rama — esto generará merge conflicts intencionales.
 
-import pytest
 from src.linked_list import LinkedList, Node
 
 

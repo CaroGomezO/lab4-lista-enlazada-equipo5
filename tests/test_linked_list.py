@@ -3,13 +3,13 @@
 # CADA EQUIPO agregará sus propias pruebas en este archivo
 # desde su rama — esto generará merge conflicts intencionales.
 
-import pytest
 from src.linked_list import LinkedList, Node
 
 
 # ------------------------------------------------------------------ #
 # Pruebas del docente — __str__ y __len__                             #
 # ------------------------------------------------------------------ #
+
 
 def test_lista_vacia_str():
     ll = LinkedList()
@@ -30,41 +30,47 @@ def test_node_repr():
 # Pruebas del Equipo B — delete                                       #
 # ------------------------------------------------------------------ #
 
+
 def test_delete_nodo_existente():
     ll = LinkedList()
     ll.head = Node(1)
     ll.head.next = Node(2)
     ll.head.next.next = Node(3)
-    assert ll.delete(2) == True
+    assert ll.delete(2)
     assert len(ll) == 2
+
 
 def test_delete_cabeza():
     ll = LinkedList()
     ll.head = Node(10)
     ll.head.next = Node(20)
-    assert ll.delete(10) == True
+    assert ll.delete(10)
     assert ll.head.data == 20
+
 
 def test_delete_ultimo_nodo():
     ll = LinkedList()
     ll.head = Node(5)
     ll.head.next = Node(9)
-    assert ll.delete(9) == True
+    assert ll.delete(9)
     assert ll.head.next is None
+
 
 def test_delete_valor_no_existe():
     ll = LinkedList()
     ll.head = Node(1)
-    assert ll.delete(99) == False
+    assert not ll.delete(99)
+
 
 def test_delete_lista_vacia():
     ll = LinkedList()
-    assert ll.delete(1) == False
+    assert not ll.delete(1)
 
 
 # ------------------------------------------------------------------ #
 # Pruebas Equipo A — append                                           #
 # ------------------------------------------------------------------ #
+
 
 def test_append_un_elemento():
     ll = LinkedList()
@@ -89,6 +95,7 @@ def test_append_orden_preservado():
         ll.append(v)
     current = ll.head
     for expected in [5, 10, 15]:
+        assert current is not None
         assert current.data == expected
         current = current.next
 
@@ -106,6 +113,7 @@ def test_append_ultimo_nodo_apunta_a_none():
     ll.append(2)
     ll.append(3)
     current = ll.head
+    assert current is not None
     while current.next:
         current = current.next
     assert current.next is None
@@ -122,6 +130,7 @@ def test_append_valor_cero():
 def test_append_un_elemento_next_es_none():
     ll = LinkedList()
     ll.append(42)
+    assert ll.head is not None
     assert ll.head.next is None
 
 
@@ -131,6 +140,7 @@ def test_append_multiples_elementos():
     for i in range(n):
         ll.append(i)
     assert len(ll) == n
+    assert ll.head is not None
     assert ll.head.data == 0
 
 
@@ -140,3 +150,46 @@ def test_append_datos_duplicados():
     ll.append(5)
     assert len(ll) == 2
     assert str(ll) == "5 -> 5"
+
+
+# ------------------------------------------------------------------ #
+# Pruebas Equipo C — search                                           #
+# ------------------------------------------------------------------ #
+
+
+def test_search_elemento_existente():
+    ll = LinkedList()
+    ll.append(10)
+    ll.append(20)
+    nodo = ll.search(10)
+    assert nodo is not None
+    assert nodo.data == 10
+
+
+def test_search_elemento_inexistente():
+    ll = LinkedList()
+    ll.append(5)
+    assert ll.search(99) is None
+
+
+def test_search_lista_vacia():
+    ll = LinkedList()
+    assert ll.search(1) is None
+
+
+def test_search_ultimo_elemento():
+    ll = LinkedList()
+    for v in [1, 2, 3]:
+        ll.append(v)
+    nodo = ll.search(3)
+    assert nodo is not None
+    assert nodo.data == 3
+
+
+def test_search_ultimo_elemento_lista_larga():
+    ll = LinkedList()
+    for v in range(600):
+        ll.append(v)
+    nodo = ll.search(599)
+    assert nodo is not None
+    assert nodo.data == 599

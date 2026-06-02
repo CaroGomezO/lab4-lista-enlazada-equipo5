@@ -7,7 +7,7 @@ class Node:
 
     def __init__(self, data):
         self.data = data
-        self.next = None
+        self.next: Node | None = None
 
     def __repr__(self):
         return f"Node({self.data})"
@@ -17,7 +17,7 @@ class LinkedList:
     """Lista enlazada simple."""
 
     def __init__(self):
-        self.head = None
+        self.head: Node | None = None
 
     # ------------------------------------------------------------------ #
     # Implementado por el docente — NO modificar                          #
@@ -49,14 +49,14 @@ class LinkedList:
         Args:
             data: El valor a insertar.
         """
-        
+
         new_node = Node(data)
-        
+
         # Caso 1: Lista vacía
         if self.head is None:
             self.head = new_node
             return
-        
+
         # Caso 2: Lista no vacía, se recorre hasta el último nodo
         current = self.head
         while current.next is not None:
@@ -66,7 +66,7 @@ class LinkedList:
     # ------------------------------------------------------------------ #
     # TODO — Equipo B: rama feature/delete                                #
     # ------------------------------------------------------------------ #
-    
+
     def delete(self, data):
         """Elimina el primer nodo cuyo valor sea igual a data.
 
@@ -104,4 +104,9 @@ class LinkedList:
         Returns:
             El nodo que contiene data, o None si no existe.
         """
-        raise NotImplementedError("Equipo C debe implementar search()")
+        current = self.head
+        while current is not None:
+            if current.data == data:
+                return current
+            current = current.next
+        return None

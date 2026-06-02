@@ -66,6 +66,7 @@ class LinkedList:
     # ------------------------------------------------------------------ #
     # TODO — Equipo B: rama feature/delete                                #
     # ------------------------------------------------------------------ #
+    
     def delete(self, data):
         """Elimina el primer nodo cuyo valor sea igual a data.
 
@@ -75,7 +76,21 @@ class LinkedList:
         Returns:
             True si el nodo fue eliminado, False si no se encontró.
         """
-        raise NotImplementedError("Equipo B debe implementar delete()")
+        if self.head is None:
+            return False
+
+        if self.head.data == data:
+            self.head = self.head.next
+            return True
+
+        current = self.head
+        while current.next:
+            if current.next.data == data:
+                current.next = current.next.next
+                return True
+            current = current.next
+
+        return False
 
     # ------------------------------------------------------------------ #
     # TODO — Equipo C: rama feature/search                                #

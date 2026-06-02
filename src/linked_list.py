@@ -7,7 +7,7 @@ class Node:
 
     def __init__(self, data):
         self.data = data
-        self.next = None
+        self.next: Node | None = None
 
     def __repr__(self):
         return f"Node({self.data})"
@@ -17,7 +17,7 @@ class LinkedList:
     """Lista enlazada simple."""
 
     def __init__(self):
-        self.head = None
+        self.head: Node | None = None
 
     # ------------------------------------------------------------------ #
     # Implementado por el docente — NO modificar                          #

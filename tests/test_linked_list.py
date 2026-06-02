@@ -54,6 +54,7 @@ def test_append_orden_preservado():
         ll.append(v)
     current = ll.head
     for expected in [5, 10, 15]:
+        assert current is not None
         assert current.data == expected
         current = current.next
 
@@ -71,6 +72,7 @@ def test_append_ultimo_nodo_apunta_a_none():
     ll.append(2)
     ll.append(3)
     current = ll.head
+    assert current is not None
     while current.next:
         current = current.next
     assert current.next is None
@@ -87,6 +89,7 @@ def test_append_valor_cero():
 def test_append_un_elemento_next_es_none():
     ll = LinkedList()
     ll.append(42)
+    assert ll.head is not None
     assert ll.head.next is None
 
 
@@ -96,6 +99,7 @@ def test_append_multiples_elementos():
     for i in range(n):
         ll.append(i)
     assert len(ll) == n
+    assert ll.head is not None
     assert ll.head.data == 0
 
 

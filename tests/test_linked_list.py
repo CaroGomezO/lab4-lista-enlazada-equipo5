@@ -143,3 +143,12 @@ def test_search_ultimo_elemento():
     nodo = ll.search(3)
     assert nodo is not None
     assert nodo.data == 3
+
+
+def test_search_ultimo_elemento_lista_larga():
+    ll = LinkedList()
+    for v in range(600):
+        ll.append(v)
+    nodo = ll.search(599)
+    assert nodo is not None
+    assert nodo.data == 599
